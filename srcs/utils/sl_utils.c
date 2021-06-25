@@ -12,7 +12,25 @@
 
 #include "../../includes/so_long.h"
 
-int	sl_is_all_wall(const char *s)
+void    sl_get_point(const char *s, t_so_long *sl)
+{
+	if (*s == 0)
+		return ;
+	while (*s != 0)
+	{
+		if (*s == 'E' && sl->sl_exit == 0)
+			sl->sl_exit = 1;
+		else if (*s == 'C' && sl->sl_collectible == 0)
+			sl->sl_collectible = 1;
+		else if (*s == 'P' && sl->sl_starting_position == 0)
+			sl->sl_starting_position = 1;
+		if (sl->sl_exit == 1 && sl->sl_collectible == 1 && sl->sl_starting_position == 1)
+			return ;
+		s++;
+	}
+}
+
+int		sl_is_all_wall(const char *s)
 {
 	if (*s == 0)
 		return (0);
