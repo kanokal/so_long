@@ -20,6 +20,14 @@ static void		my_mlx_pixel_put(t_img_data *img_data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+static void		my_mlx_string_put(t_img_data *img_data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img_data->addr + (y * img_data->size + x * (img_data->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
 static void		write_color(t_img_data *img, t_vec3 c) 
 {
 	int	ir;
