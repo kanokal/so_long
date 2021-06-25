@@ -33,6 +33,12 @@
 # define KEY_DOWN 125
 # define KEY_UP 126
 
-int	sl_is_all_wall(const char *s);
+
+/*
+**  utils
+*/
+
+int	    sl_is_all_wall(const char *s);
+void    sl_get_point(const char *s, t_so_long *sl);
 
 #endif
