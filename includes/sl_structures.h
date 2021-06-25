@@ -23,6 +23,14 @@ typedef struct	s_img_data
 	int			color;
 }				t_img_data;
 
+typedef struct	s_so_long
+{
+	char		sl_exit;
+	char		sl_collectible;
+	char		sl_starting_position;
+}				t_so_long;
+
+
 typedef struct	s_data
 {
 	void		*mlx;
