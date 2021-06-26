@@ -6,13 +6,13 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/06/25 17:12:38 by jpyo             ###   ########.fr        #
+#    Updated: 2021/06/26 15:32:33 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	so_long
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	#-Wall -Wextra -Werror
 
 HEADER_DIR		=	./includes/
 
@@ -32,8 +32,11 @@ OPENGL_LIB		=	libmlx.a
 
 all : $(NAME)
 
+run : $(NAME)
+	./so_long
+
 $(NAME) : $(FT_LIB) $(MMS_LIB) $(OPENGL_LIB) $(SRCS_OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(FT_LIB) $(SRCS_OBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(MMS_LIB) $(OPENGL_LIB) $(FT_LIB) $(SRCS_OBJS)
 
 $(FT_LIB) :
 	$(MAKE) -C $(FT_LIB_DIR)
