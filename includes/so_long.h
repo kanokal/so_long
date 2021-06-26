@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:05:59 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/25 17:45:46 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/06/26 15:22:43 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include "../libft/includes/libft.h"
 # include "../minilibx_mms_20200219/mlx.h"
+# include "../minilibx_opengl_20191021/mlx.h"
 
+# include <stdio.h>
 # include "sl_structures.h"
+# include "sl_font.h"
 
 # define KEYPRESS 02
 # define KEYRELEASE 03
