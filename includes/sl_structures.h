@@ -23,11 +23,22 @@ typedef struct	s_img_data
 	int			color;
 }				t_img_data;
 
+typedef struct	s_sl_map
+{
+	char		**grid;
+	int			width;
+	int			height;
+}				t_sl_map;
+
 typedef struct	s_so_long
 {
-	char		sl_exit;
-	char		sl_collectible;
-	char		sl_starting_position;
+	short		exit_point;
+	short		collectible;
+	short		starting_point;
+	//short		enemy;
+	short		px;
+	short		py;
+	t_sl_map	map;
 }				t_so_long;
 
 
@@ -36,6 +47,8 @@ typedef struct	s_data
 	void		*mlx;
 	void		*win;
 	t_img_data	img;
+	t_so_long	sl;
+	char		render;
 }				t_data;
 
 #endif
