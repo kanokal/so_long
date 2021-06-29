@@ -35,13 +35,25 @@
 # define KEY_RIGHT 124
 # define KEY_DOWN 125
 # define KEY_UP 126
+# define KEY_W 1
+# define KEY_A 1
+# define KEY_S 1
+# define KEY_D 1
 
+void	sl_parse(const char *file_name, t_data *data);
+void	so_long(t_data *data);
+void	sl_render_all(t_data *data);
 
-/*
-**  utils
-*/
+int		sl_press_key(const int key, t_data *data);
+int		sl_release_key(const int key, t_data *data);
+int		sl_close(t_data *data);
 
-int	    sl_is_all_wall(const char *s);
-void    sl_get_point(const char *s, t_so_long *sl);
+int	    sl_is_all_wall(const char *line);
+int		sl_is_ok_line(const char *line);
+void    sl_set_points(const char *line, t_so_long *sl);
+char	**sl_char_more_alloc(char **arr, int arr_size);
+int		sl_check_points(t_so_long sl);
+
+void	sl_data_init(t_data *data);
 
 #endif
