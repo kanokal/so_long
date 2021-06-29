@@ -15,6 +15,7 @@
 
 # define ATLAS_NB_CHAR 95
 
-# define FONT_WIDTH	((1140 / (ATLAS_NB_CHAR)) - 2)
+# define FONT_WIDTH ((1140 / (ATLAS_NB_CHAR)) - 2)
+# define FONT_HEIGHT 20
 
 #endif
