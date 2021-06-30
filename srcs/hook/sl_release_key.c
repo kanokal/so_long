@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_font.h                                          :+:      :+:    :+:   */
+/*   sl_release_key.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/26 14:34:32 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/26 14:39:00 by jpyo             ###   ########.fr       */
+/*   Created: 2021/06/30 16:05:22 by jpyo              #+#    #+#             */
+/*   Updated: 2021/06/30 18:24:00 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SL_FONT_H
-# define SL_FONT_H
+#include "../../includes/so_long.h"
 
-# define ATLAS_NB_CHAR 95
-
-# define FONT_WIDTH ((1140 / (ATLAS_NB_CHAR)) - 2)
-# define FONT_HEIGHT 20
-
-#endif
+int	sl_release_key(const int key, t_sl_data *data)
+{
+	if (key == KEY_W && data->render == 1)
+	{
+		data->render = 0;
+	}
+	else if (key == KEY_S && data->render == 1)
+	{
+		data->render = 0;
+	}
+	else if (key == KEY_A && data->render == 1)
+	{
+		data->render = 0;
+	}
+	else if (key == KEY_D && data->render == 1)
+	{
+		data->render = 0;
+	}
+	return (0);
+}

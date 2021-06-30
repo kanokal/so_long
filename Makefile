@@ -6,7 +6,7 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/06/26 15:32:33 by jpyo             ###   ########.fr        #
+#    Updated: 2021/06/30 19:33:07 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CFLAGS			=	#-Wall -Wextra -Werror
 
 HEADER_DIR		=	./includes/
 
-FILES			=	so_long 
+FILES			=	main so_long sl_render sl_parse \
+					utils/sl_init utils/sl_utils \
+					hook/sl_hook hook/sl_press_key hook/sl_release_key
 SRCS_DIR		=	./srcs/
 SRCS			=	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
 SRCS_OBJS		=	$(addprefix $(SRCS_DIR), $(addsuffix .o, $(FILES)))
@@ -33,7 +35,7 @@ OPENGL_LIB		=	libmlx.a
 all : $(NAME)
 
 run : $(NAME)
-	./so_long
+	./so_long map/sample1.ber
 
 $(NAME) : $(FT_LIB) $(MMS_LIB) $(OPENGL_LIB) $(SRCS_OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(MMS_LIB) $(OPENGL_LIB) $(FT_LIB) $(SRCS_OBJS)

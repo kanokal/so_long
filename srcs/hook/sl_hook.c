@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:23:01 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/25 17:45:25 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/06/30 18:23:03 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	sl_mouse_click(int button, int x, int y, t_data *data)
 }
 */
 
-int	sl_close(t_data *data)
+int	sl_close(t_sl_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);

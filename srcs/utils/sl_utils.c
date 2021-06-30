@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:25:13 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/25 17:41:24 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/06/30 18:02:16 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	**sl_char_more_alloc(char **arr, int arr_size)
 {
 	int		idx;
-	int		tmp_size;
 	char	**tmp;
 
 	if (arr_size < 0)
@@ -31,40 +30,39 @@ char	**sl_char_more_alloc(char **arr, int arr_size)
 	tmp[arr_size] = NULL;
 	idx = 0;
 	while (idx < arr_size)
+	{
 		tmp[idx] = arr[idx];
+		idx++;
+	}
 	if (arr != NULL)
 		free(arr);
 	return (tmp);
 }
 
-int		sl_check_points(t_so_long sl)
+int		sl_check_points(t_sl_map map)
 {
-	if (sl.collectible < 1 || sl.exit_point < 1 || sl.starting_point < 1)
+	if (map.collectible < 1 || map.exit_point < 1 || map.starting_point < 1)
 		return (-1);
 	return (0);
 }
 
-void    sl_set_points(const char *line, t_so_long *sl)
+void    sl_set_points(const char *line, t_sl_map *map)
 {
 	int	idx;
 
 	idx = 0;
 	while (line[idx] != 0)
 	{
-		if (line[idx] == 'E' && sl->exit_point == 0)
-			sl->exit_point = 1;
-		else if (line[idx] == 'C' && sl->collectible == 0)
-			sl->collectible = 1;
-		else if (line[idx] == 'P' && sl->starting_point == 0)
+		if (line[idx] == 'E')
+			map->exit_point++;
+		else if (line[idx] == 'C')
+			map->collectible++;
+		else if (line[idx] == 'P' && map->starting_point == 0)
 		{
-			sl->starting_point = 1;
-			sl->py = sl->map.height;
-			sl->px = idx;
+			map->starting_point++;
+			map->py = map->height;
+			map->px = idx;
 		}
-		//else if (line[idx] == 'E' && sl->sl_starting_position == 0)
-		//	sl->enemy = 1;
-		if (sl->exit_point == 1 && sl->collectible == 1 && sl->starting_point == 1)
-			return ;
 		idx++;
 	}
 }

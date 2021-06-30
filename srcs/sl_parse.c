@@ -6,13 +6,13 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:15:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/25 17:43:19 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/06/30 20:00:23 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_check_line(const int idx, const char *line, t_sl_map *map)
+static void	sl_check_line(const int idx, char *line, t_sl_map *map)
 {
 	if (idx == 0)
 	{
@@ -29,44 +29,40 @@ static void	sl_check_line(const int idx, const char *line, t_sl_map *map)
 	}
 }
 
-static void	sl_set_map_grid(t_sl_map *map, const char *line)
+static void	sl_set_map_grid(t_sl_map *map, char *line)
 {
-	map->grid = ft_char_more_alloc(map->grid, map->height);
+	map->grid = sl_char_more_alloc(map->grid, map->height);
 	if (map->grid == NULL)
 		ft_error_handling("Error\n");
 	map->grid[map->height] = line;
 }
 
-static void	sl_set_map(const int fd, t_data *data)
+static void	sl_set_map(const int fd, t_sl_data *data)
 {
 	int		ret;
-	char	**tmp;
-	char	**line;
+	char	*line;
 
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		sl_check_line(data->sl.map.height, line, &data->sl.map);
-		sl_set_map_grid(&data->sl.map, line);
-		if (data->sl.map.height != 0)
-			sl_set_points(line, &data->sl);
-		data->sl.map.height++;
-		ft_free_ptr(&line);
+		sl_check_line(data->map.height, line, &data->map);
+		sl_set_map_grid(&data->map, line);
+		if (data->map.height != 0)
+			sl_set_points(line, &data->map);
+		data->map.height++;
 	}
 	if (ret < 0)
 		ft_error_handling("Error\n");
 	if (sl_is_all_wall(line) != 1)
 		ft_error_handling("Error\n");
-	if ((int)ft_strlen(line) != data->sl.map.width)
+	if ((int)ft_strlen(line) != data->map.width)
 		ft_error_handling("Error\n");
-	sl_set_map_grid(&data->sl.map, line);
-	ft_free_ptr(&line);
+	sl_set_map_grid(&data->map, line);
+	data->map.height++;
 }
 
-void		sl_parse(const char *file_name, t_data *data)
+void		sl_parse(const char *file_name, t_sl_data *data)
 {
 	int			fd;
-	int			ret;
-	char		*line;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
