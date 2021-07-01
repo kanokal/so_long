@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:25:13 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/30 18:02:16 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 16:42:23 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		sl_check_points(t_sl_map map)
 	return (0);
 }
 
-void    sl_set_points(const char *line, t_sl_map *map)
+void    sl_set_points(const char *line, t_sl_map *map, t_player_data *p)
 {
 	int	idx;
 
@@ -60,8 +60,8 @@ void    sl_set_points(const char *line, t_sl_map *map)
 		else if (line[idx] == 'P' && map->starting_point == 0)
 		{
 			map->starting_point++;
-			map->py = map->height;
-			map->px = idx;
+			p->py = map->height;
+			p->px = idx;
 		}
 		idx++;
 	}

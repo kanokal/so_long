@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:15:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/30 20:00:23 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 16:49:23 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	sl_set_map(const int fd, t_sl_data *data)
 		sl_check_line(data->map.height, line, &data->map);
 		sl_set_map_grid(&data->map, line);
 		if (data->map.height != 0)
-			sl_set_points(line, &data->map);
+			sl_set_points(line, &data->map, &data->player_data);
 		data->map.height++;
 	}
 	if (ret < 0)
