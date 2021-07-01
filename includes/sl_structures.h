@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:44:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 17:26:35 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 19:00:37 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ typedef struct	s_texture
 	int			collect[PIXEL_SIZE * PIXEL_SIZE];
 	int			exit[PIXEL_SIZE * PIXEL_SIZE];
 	int			enemy[PIXEL_SIZE * PIXEL_SIZE];
-	int			zero[PIXEL_SIZE * PIXEL_SIZE];
-	int			one[PIXEL_SIZE * PIXEL_SIZE];
-	int			two[PIXEL_SIZE * PIXEL_SIZE];
-	int			three[PIXEL_SIZE * PIXEL_SIZE];
-	int			four[PIXEL_SIZE * PIXEL_SIZE];
-	int			five[PIXEL_SIZE * PIXEL_SIZE];
-	int			six[PIXEL_SIZE * PIXEL_SIZE];
-	int			seven[PIXEL_SIZE * PIXEL_SIZE];
-	int			eight[PIXEL_SIZE * PIXEL_SIZE];
-	int			nine[PIXEL_SIZE * PIXEL_SIZE];
-	int			ten[PIXEL_SIZE * PIXEL_SIZE];
 }				t_texture;
 
 typedef struct	s_canvas
@@ -83,6 +72,7 @@ typedef struct	s_sl_data
 	t_canvas	canvas;
 	t_img_data	img;
 	t_img_data	background;
+	t_img_data	move;
 	t_sl_map	map;
 	t_texture	texture;
 	char		render;
