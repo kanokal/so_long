@@ -6,13 +6,13 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/07/01 16:49:35 by jpyo             ###   ########.fr        #
+#    Updated: 2021/07/01 19:47:09 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	so_long
 CC				=	gcc
-CFLAGS			=	#-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror
 
 HEADER_DIR		=	./includes/
 
