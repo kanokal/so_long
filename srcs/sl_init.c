@@ -6,13 +6,13 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:47 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 17:27:50 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 19:00:28 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_texture_init(t_sl_data *data, int *texture, char *file_name)
+static void	sl_texture_init(t_sl_data *data, int *texture, int size, char *file_name)
 {
 	t_img_data	img;
 	int			x;
@@ -23,12 +23,12 @@ static void	sl_texture_init(t_sl_data *data, int *texture, char *file_name)
 		ft_error_handling("Error\n");
 	img.addr = (int *)mlx_get_data_addr(img.ptr, &img.bpp, &img.size_line, &img.endian);
 	y = 0;
-	while (y < PIXEL_SIZE)
+	while (y < size)
 	{
 		x = 0;
-		while (x < PIXEL_SIZE)
+		while (x < size)
 		{
-			texture[y * PIXEL_SIZE + x] = img.addr[y * img.height * (img.height / PIXEL_SIZE) + x * (img.width / PIXEL_SIZE)];
+			texture[y * size + x] = img.addr[y * img.height * (img.height / size) + x * (img.width / size)];
 			x++;
 		}
 		y++;
@@ -70,24 +70,15 @@ void		sl_data_init(t_sl_data *data)
 	data->mlx = mlx_init();
 	data->win = NULL;
 	sl_img_init(&data->img);
+	sl_img_init(&data->background);
+	sl_img_init(&data->move);
 	sl_map_init(&data->map);
 	sl_player_data_init(&data->player_data);
 	data->render = 0;
-	sl_texture_init(data, data->texture.wall, "textures/wall.xpm");
-	sl_texture_init(data, data->texture.tile, "textures/tile.xpm");
-	sl_texture_init(data, data->texture.player, "textures/player.xpm");
-	sl_texture_init(data, data->texture.collect, "textures/collect.xpm");
-	sl_texture_init(data, data->texture.exit, "textures/exit.xpm");
-	sl_texture_init(data, data->texture.enemy, "textures/enemy.xpm");
-	sl_texture_init(data, data->texture.zero, "textures/zero.xpm");
-	sl_texture_init(data, data->texture.one, "textures/numbers/one.xpm");
-	sl_texture_init(data, data->texture.two, "textures/numbers/two.xpm");
-	sl_texture_init(data, data->texture.three, "textures/numbers/three.xpm");
-	sl_texture_init(data, data->texture.four, "textures/numbers/four.xpm");
-	sl_texture_init(data, data->texture.five, "textures/numbers/five.xpm");
-	sl_texture_init(data, data->texture.six, "textures/numbers/six.xpm");
-	sl_texture_init(data, data->texture.seven, "textures/numbers/seven.xpm");
-	sl_texture_init(data, data->texture.eight, "textures/numbers/eight.xpm");
-	sl_texture_init(data, data->texture.nine, "textures/numbers/nine.xpm");
-	sl_texture_init(data, data->texture.ten, "textures/numbers/ten.xpm");
+	sl_texture_init(data, data->texture.wall, PIXEL_SIZE, "textures/wall.xpm");
+	sl_texture_init(data, data->texture.tile, PIXEL_SIZE, "textures/tile.xpm");
+	sl_texture_init(data, data->texture.player, PIXEL_SIZE, "textures/player.xpm");
+	sl_texture_init(data, data->texture.collect, PIXEL_SIZE, "textures/collect.xpm");
+	sl_texture_init(data, data->texture.exit, PIXEL_SIZE, "textures/exit.xpm");
+	sl_texture_init(data, data->texture.enemy, PIXEL_SIZE, "textures/enemy.xpm");
 }
