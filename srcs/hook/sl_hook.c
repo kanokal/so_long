@@ -6,19 +6,11 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:23:01 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/30 18:23:03 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 17:02:18 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-/*
-int	sl_mouse_click(int button, int x, int y, t_data *data)
-{
-	printf("X and Y = (%d , %d)\n", x, y);
-	return (0);
-}
-*/
 
 int	sl_close(t_sl_data *data)
 {
