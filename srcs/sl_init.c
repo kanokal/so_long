@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:47 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 19:00:28 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 19:50:31 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void		sl_data_init(t_sl_data *data)
 	sl_map_init(&data->map);
 	sl_player_data_init(&data->player_data);
 	data->render = 0;
-	sl_texture_init(data, data->texture.wall, PIXEL_SIZE, "textures/wall.xpm");
-	sl_texture_init(data, data->texture.tile, PIXEL_SIZE, "textures/tile.xpm");
-	sl_texture_init(data, data->texture.player, PIXEL_SIZE, "textures/player.xpm");
-	sl_texture_init(data, data->texture.collect, PIXEL_SIZE, "textures/collect.xpm");
-	sl_texture_init(data, data->texture.exit, PIXEL_SIZE, "textures/exit.xpm");
-	sl_texture_init(data, data->texture.enemy, PIXEL_SIZE, "textures/enemy.xpm");
+	sl_texture_init(data, data->texture.wall, SPRITE_SIZE, "textures/wall.xpm");
+	sl_texture_init(data, data->texture.tile, SPRITE_SIZE, "textures/tile.xpm");
+	sl_texture_init(data, data->texture.player, SPRITE_SIZE, "textures/player.xpm");
+	sl_texture_init(data, data->texture.collect, SPRITE_SIZE, "textures/collect.xpm");
+	sl_texture_init(data, data->texture.exit, SPRITE_SIZE, "textures/exit.xpm");
+	sl_texture_init(data, data->texture.enemy, SPRITE_SIZE, "textures/enemy.xpm");
 }

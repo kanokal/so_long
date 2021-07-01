@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:28:28 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 16:59:51 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 19:50:38 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	sl_render_texture(t_sl_data *data, int x, int y, int *texture)
 	int		j;
 
 	j = 0;
-	while (j < PIXEL_SIZE)
+	while (j < SPRITE_SIZE)
 	{
 		i = 0;
-		while (i < PIXEL_SIZE)
+		while (i < SPRITE_SIZE)
 		{
-			data->img.addr[(y * PIXEL_SIZE * data->canvas.width + j * data->canvas.width) + (x * PIXEL_SIZE + i)] = texture[j * PIXEL_SIZE + i];
+			data->img.addr[(y * SPRITE_SIZE * data->canvas.width + j * data->canvas.width) + (x * SPRITE_SIZE + i)] = texture[j * SPRITE_SIZE + i];
 			i++;
 		}
 		j++;

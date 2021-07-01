@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:44:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 19:00:37 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 19:52:14 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define IMG_W_SIZE 128
 # define IMG_H_SIZE 128
-# define PIXEL_SIZE 64
+# define SPRITE_SIZE 64
 
 typedef struct	s_img_data
 {
@@ -31,12 +31,12 @@ typedef struct	s_img_data
 
 typedef struct	s_texture
 {
-	int			wall[PIXEL_SIZE * PIXEL_SIZE];
-	int			tile[PIXEL_SIZE * PIXEL_SIZE];
-	int			player[PIXEL_SIZE * PIXEL_SIZE];
-	int			collect[PIXEL_SIZE * PIXEL_SIZE];
-	int			exit[PIXEL_SIZE * PIXEL_SIZE];
-	int			enemy[PIXEL_SIZE * PIXEL_SIZE];
+	int			wall[SPRITE_SIZE * SPRITE_SIZE];
+	int			tile[SPRITE_SIZE * SPRITE_SIZE];
+	int			player[SPRITE_SIZE * SPRITE_SIZE];
+	int			collect[SPRITE_SIZE * SPRITE_SIZE];
+	int			exit[SPRITE_SIZE * SPRITE_SIZE];
+	int			enemy[SPRITE_SIZE * SPRITE_SIZE];
 }				t_texture;
 
 typedef struct	s_canvas

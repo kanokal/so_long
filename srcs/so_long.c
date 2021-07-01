@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:05:51 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 19:03:14 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 19:50:41 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	sl_display_move_count(t_sl_data *data)
 	mv = ft_bigint_to_a(data->player_data.mv_count);
 	if (mv == NULL)
 		ft_error_handling("Error\n");
-	mlx_string_put(data->mlx, data->win, 5, data->canvas.height - PIXEL_SIZE / 2, 0x00800000, mv);
+	mlx_string_put(data->mlx, data->win, 5, data->canvas.height - SPRITE_SIZE / 2, 0x00800000, mv);
 	ft_free_ptr(&mv);
 }
 
