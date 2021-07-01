@@ -6,7 +6,7 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/06/30 19:33:07 by jpyo             ###   ########.fr        #
+#    Updated: 2021/07/01 16:49:35 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS			=	#-Wall -Wextra -Werror
 
 HEADER_DIR		=	./includes/
 
-FILES			=	main so_long sl_render sl_parse \
-					utils/sl_init utils/sl_utils \
-					hook/sl_hook hook/sl_press_key hook/sl_release_key
+FILES			=	main so_long sl_render sl_parse sl_init \
+					utils/sl_utils \
+					hook/sl_hook hook/sl_press_key hook/sl_release_key hook/sl_press_key2
 SRCS_DIR		=	./srcs/
 SRCS			=	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
 SRCS_OBJS		=	$(addprefix $(SRCS_DIR), $(addsuffix .o, $(FILES)))
