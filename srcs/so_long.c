@@ -6,17 +6,28 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:05:51 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/30 19:47:21 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 17:26:46 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_clean_window(t_sl_data *data)
+static void	sl_display_move_count(t_sl_data *data)
 {
 	int		x;
 	int		y;
-	char	*dst;
+	char	*mv;
+
+	mv = ft_bigint_to_a(data->player_data.mv_count);
+	if (mv == NULL)
+		ft_error_handling("Error\n");
+	ft_free_ptr(&mv);
+}
+
+static void	sl_set_background(t_sl_data *data)
+{
+	int		x;
+	int		y;
 
 	y = 0;
 	while (y < data->canvas.height)
@@ -24,27 +35,30 @@ static void	sl_clean_window(t_sl_data *data)
 		x = 0;
 		while (x < data->canvas.width)
 		{
-			dst = data->img.addr + (y * data->img.size + x * data->img.bpp / 8);
-			*(unsigned int *)dst = 0x00FFFFFF;
+			data->background.addr[y * data->canvas.width + x] = 0x0093DAFF;
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx, data->win, data->background.ptr, 0, 0);
 }
 
 static int	sl_loop(t_sl_data *data)
 {
 	if (data->render == 1)
 	{
-		sl_clean_window(data);
+		sl_set_background(data);
 		sl_render(data);
+		sl_display_move_count(data);
 	}
 	return (0);
 }
 
 void	so_long(t_sl_data *data)
 {
+	sl_set_background(data);
 	sl_render(data);
+	sl_display_move_count(data);
 	mlx_hook(data->win, KEYPRESS, KEYPRESS_MASK, sl_press_key, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASE_MASK, sl_release_key, data);
 	mlx_hook(data->win, DESTROYNOTIFY, 0, sl_close, data);

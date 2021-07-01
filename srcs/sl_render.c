@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:28:28 by jpyo              #+#    #+#             */
-/*   Updated: 2021/06/30 21:03:56 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/01 16:59:51 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,21 @@
 
 // 몇번 움직였는지 표시
 
-// void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	dst = data->addr + (y * data->size + x * (data->bpp / 8));
-// 	*(unsigned int *)dst = color;
-// }
-
 static void	sl_render_texture(t_sl_data *data, int x, int y, int *texture)
 {
 	int		i;
 	int		j;
-	char	*dst;
 
-	// j = 0;
-	// while (j < IMG_H_SIZE)
-	// {
-	// 	i = 0;
-	// 	while (i < IMG_W_SIZE)
-	// 	{
-	// 		dst = data->img.addr + (((IMG_H_SIZE * y * data->img.size) + (j * data->img.size)) + ((IMG_W_SIZE * x * data->img.bpp / 8) + (i * data->img.bpp / 8)));
-	// 		*(unsigned int *)dst = texture[IMG_W_SIZE * j + i];
-	// 		i++;
-	// 	}
-	// 	j++;
-	// }
-	printf("%d %d\n", x, y);
-	i = 0;
-	while (i < IMG_H_SIZE * IMG_W_SIZE)
+	j = 0;
+	while (j < PIXEL_SIZE)
 	{
-		data->img.addr[IMG_H_SIZE * y + IMG_W_SIZE * x + i] = texture[i];
-		i++;
+		i = 0;
+		while (i < PIXEL_SIZE)
+		{
+			data->img.addr[(y * PIXEL_SIZE * data->canvas.width + j * data->canvas.width) + (x * PIXEL_SIZE + i)] = texture[j * PIXEL_SIZE + i];
+			i++;
+		}
+		j++;
 	}
 }
 
@@ -54,8 +37,6 @@ void	sl_render(t_sl_data *data)
 	int	x;
 	int	y;
 
-	printf("%d %d\n", data->map.height, data->map.width);
-	while(1);
 	y = 0;
 	while (y < data->map.height)
 	{
@@ -72,6 +53,8 @@ void	sl_render(t_sl_data *data)
 				sl_render_texture(data, x, y, data->texture.collect);
 			else if (data->map.grid[y][x] == 'E')
 				sl_render_texture(data, x, y, data->texture.exit);
+			else if (data->map.grid[y][x] == 'W')
+				sl_render_texture(data, x, y, data->texture.enemy);
 			else
 				ft_error_handling("Error\n");
 			x++;
