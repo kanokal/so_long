@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:25:13 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 14:30:48 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 19:06:49 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,29 @@
 
 void	sl_set_animation(t_sl_data *data)
 {
-	if (data->player_data.rev == 0)
+	if (data->player.rev == 0)
 	{
-		data->player_data.animation++;
-		if (data->player_data.animation >= ANIMATION_SPEED * 2.5)
-			data->player_data.rev = 1;
+		data->player.animation++;
+		if (data->player.animation >= ANIMATION_SPEED * 2.5)
+			data->player.rev = 1;
 	}
-	else if (data->player_data.rev == 1)
+	else if (data->player.rev == 1)
 	{
-		data->player_data.animation--;
-		if (data->player_data.animation <= ANIMATION_SPEED * 0.5)
-			data->player_data.rev = 0;
+		data->player.animation--;
+		if (data->player.animation <= ANIMATION_SPEED * 0.5)
+			data->player.rev = 0;
+	}
+	if (data->enemies.rev == 0)
+	{
+		data->enemies.animation++;
+		if (data->enemies.animation >= ANIMATION_SPEED * 2.5)
+			data->enemies.rev = 1;
+	}
+	else if (data->enemies.rev == 1)
+	{
+		data->enemies.animation--;
+		if (data->enemies.animation <= ANIMATION_SPEED * 0.5)
+			data->enemies.rev = 0;
 	}
 }
 
@@ -55,14 +67,7 @@ char	**sl_char_more_alloc(char **arr, int arr_size)
 	return (tmp);
 }
 
-int		sl_check_points(t_sl_map map)
-{
-	if (map.collectible < 1 || map.exit_point < 1 || map.starting_point < 1)
-		return (-1);
-	return (0);
-}
-
-void    sl_set_points(const char *line, t_sl_map *map, t_player_data *p)
+void    sl_set_points(const char *line, t_sl_data *data)
 {
 	int	idx;
 
@@ -70,15 +75,17 @@ void    sl_set_points(const char *line, t_sl_map *map, t_player_data *p)
 	while (line[idx] != 0)
 	{
 		if (line[idx] == 'E')
-			map->exit_point++;
+			data->map.exit_point++;
 		else if (line[idx] == 'C')
-			map->collectible++;
-		else if (line[idx] == 'P' && map->starting_point == 0)
+			data->map.collectible++;
+		else if (line[idx] == 'P' && data->map.starting_point == 0)
 		{
-			map->starting_point++;
-			p->py = map->height;
-			p->px = idx;
+			data->map.starting_point++;
+			data->player.pos_y = data->map.height;
+			data->player.pos_x = idx;
 		}
+		else if (line[idx] == 'W')
+			data->enemies.count++;
 		idx++;
 	}
 }

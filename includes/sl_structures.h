@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:44:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 16:50:31 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 19:04:41 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct		s_texture
 	int				player[PIXEL_SIZE * PIXEL_SIZE];
 	int				collect[PIXEL_SIZE * PIXEL_SIZE];
 	int				exit[PIXEL_SIZE * PIXEL_SIZE];
-	int				enemy[PIXEL_SIZE * PIXEL_SIZE];
+	int				**enemy;
 }					t_texture;
 
 typedef struct		s_canvas
@@ -58,18 +58,33 @@ typedef struct		s_sl_map
 	short			exit_point;
 	short			collectible;
 	short			starting_point;
-	short			enemy;
 }					t_sl_map;
 
 typedef struct		s_player_data
 {
-	int				px;
-	int				py;
+	int				pos_x;
+	int				pos_y;
 	char			view_dir;
-	char			rev;
 	int				animation;
+	char			rev;
 	t_bigint		*mv_count;
 }					t_player_data;
+
+typedef struct		s_enemy_data
+{
+	int				pos_x;
+	int				pos_y;
+	char			view_dir;
+	char			mv_dir;
+}					t_enemy_data;
+
+typedef struct		s_enemy_group
+{
+	int				animation;
+	char			rev;
+	int				count;
+	t_enemy_data	*group;
+}					t_enemy_group;
 
 typedef struct		s_sl_data
 {
@@ -82,7 +97,8 @@ typedef struct		s_sl_data
 	t_img_data		move;
 	t_sl_map		map;
 	t_texture		texture;
-	t_player_data	player_data;
+	t_player_data	player;
+	t_enemy_group	enemies;
 }					t_sl_data;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/07/02 15:03:51 by jpyo             ###   ########.fr        #
+#    Updated: 2021/07/02 19:11:43 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,13 @@ CFLAGS			=	#-Wall -Wextra -Werror
 
 HEADER_DIR		=	./includes/
 
-FILES			=	main so_long sl_parse sl_init player \
+FILES			=	main \
+					files/sl_parse files/sl_init files/sl_set_enemy_group \
 					utils/sl_utils \
-					hook/sl_hook hook/sl_press_key hook/sl_release_key hook/sl_press_key2 \
-					render/sl_render render/sl_background render/sl_move render/sl_move_count
+					hook/so_long hook/sl_hook hook/sl_press_key hook/sl_release_key hook/sl_press_key2 \
+					hook/sl_enemy_move hook/sl_enemy_move_c hook/sl_enemy_move_w \
+					render/sl_render render/sl_background render/sl_move render/sl_move_count \
+					sprite/sl_player sprite/sl_enemy
 SRCS_DIR		=	./srcs/
 SRCS			=	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
 SRCS_OBJS		=	$(addprefix $(SRCS_DIR), $(addsuffix .o, $(FILES)))
@@ -36,7 +39,7 @@ OPENGL_LIB		=	libmlx.a
 all : $(NAME)
 
 run : $(NAME)
-	./so_long map/sample2.ber
+	./so_long map/sample_bonus1.ber
 
 $(NAME) : $(FT_LIB) $(MMS_LIB) $(OPENGL_LIB) $(SRCS_OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(MMS_LIB) $(OPENGL_LIB) $(FT_LIB) $(SRCS_OBJS)

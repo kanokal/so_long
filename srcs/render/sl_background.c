@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:01 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 16:01:42 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 16:57:23 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	sl_set_background_do(t_sl_data *data, int x, int y, int *texture)
 		i = 0;
 		while (i < PIXEL_SIZE)
 		{
-			data->background.addr[y * data->canvas.width * PIXEL_SIZE + x * PIXEL_SIZE + j * data->canvas.width + i] = texture[j * PIXEL_SIZE + i];
+			data->background.addr[y * data->background.size_line / 4 * PIXEL_SIZE + x * PIXEL_SIZE + j * data->background.size_line / 4 + i] = texture[j * PIXEL_SIZE + i];
 			i++;
 		}
 		j++;

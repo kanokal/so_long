@@ -6,19 +6,17 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:47 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 16:44:33 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 19:09:41 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 static void	sl_texture_init(t_sl_data *data, int *texture, char *file_name)
 {
 	t_img_data	img;
 	int			x;
 	int			y;
-	int			pos_x;
-	int			pos_y;
 
 	img.ptr = mlx_xpm_file_to_image(data->mlx, file_name, &img.width, &img.height);
 	if (img.ptr == NULL)
@@ -30,13 +28,7 @@ static void	sl_texture_init(t_sl_data *data, int *texture, char *file_name)
 		x = 0;
 		while (x < PIXEL_SIZE)
 		{
-			//printf("%d\n", (int)(y * data->ratio) * img.width + (int)(x * data->ratio));
-			pos_y = y * data->ratio;
-			pos_x = x * data->ratio;
-			//printf("%d %d\n", pos_x, img.width);
-			texture[y * PIXEL_SIZE + x] = img.addr[pos_y * img.width + pos_x];
-			//texture[y * PIXEL_SIZE + x] = img.addr[y * img.width * (SPRITE_SIZE / PIXEL_SIZE) + x * (SPRITE_SIZE / PIXEL_SIZE)];
-			//texture[y * PIXEL_SIZE + x] = img.addr[y * img.width + x];
+			texture[y * PIXEL_SIZE + x] = img.addr[(int)(y * data->ratio) * img.size_line / 4 + (int)(x * data->ratio)];
 			x++;
 		}
 		y++;
@@ -52,7 +44,6 @@ static void	sl_map_init(t_sl_map *map)
 	map->collectible = 0;
 	map->exit_point = 0;
 	map->starting_point = 0;
-	map->enemy = 0;
 }
 
 static void	sl_img_init(t_img_data *img)
@@ -65,14 +56,14 @@ static void	sl_img_init(t_img_data *img)
 	img->size_line = 0;
 }
 
-static void	sl_player_data_init(t_player_data *player_data)
+static void	sl_player_data_init(t_player_data *player)
 {
-	player_data->px = 0;
-	player_data->py = 0;
-	player_data->mv_count = ft_bigint_create(1);
-	player_data->view_dir = VIEW_SOUTH;
-	player_data->animation = ANIMATION_SPEED * 0.5;
-	player_data->rev = 0;
+	player->pos_x = 0;
+	player->pos_y = 0;
+	player->mv_count = ft_bigint_create(1);
+	player->view_dir = VIEW_SOUTH;
+	player->animation = ANIMATION_SPEED * 0.5;
+	player->rev = 0;
 }
 
 void		sl_data_init(t_sl_data *data)
@@ -84,11 +75,14 @@ void		sl_data_init(t_sl_data *data)
 	sl_img_init(&data->background);
 	sl_img_init(&data->move);
 	sl_map_init(&data->map);
-	sl_player_data_init(&data->player_data);
+	sl_player_data_init(&data->player);
+	data->enemies.group = NULL;
+	data->enemies.count = 0;
+	data->enemies.rev = 0;
+	data->enemies.animation = ANIMATION_SPEED * 0.5;
 	sl_texture_init(data, data->texture.wall, "textures/wall.xpm");
 	sl_texture_init(data, data->texture.tile, "textures/tile.xpm");
 	sl_texture_init(data, data->texture.collect, "textures/collect.xpm");
 	sl_texture_init(data, data->texture.exit, "textures/exit.xpm");
-	sl_texture_init(data, data->texture.enemy, "textures/enemy.xpm");
 	sl_texture_init(data, data->texture.player, "textures/player.xpm");
 }

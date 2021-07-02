@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:38 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 16:51:41 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 19:10:56 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	{
 		sl_data_init(&data);
 		sl_parse(argv[1], &data);
-		if (sl_check_points(data.map) != 0)
+		if (data.map.collectible < 1 || data.map.exit_point < 1 || data.map.starting_point < 1)
 			ft_error_handling("Error\n");
 		data.canvas.width = data.map.width * PIXEL_SIZE;
 		data.canvas.height = data.map.height * PIXEL_SIZE;
@@ -57,6 +57,8 @@ int main(int argc, char *argv[])
 		if (data.background.ptr == NULL)
 			ft_error_handling("Error\n");
 		data.background.addr = (int *)mlx_get_data_addr(data.background.ptr, &data.background.bpp, &data.background.size_line, &data.background.endian);
+		sl_set_enemy_group(&data);
+		sl_set_enemy_sprite(&data);
 		so_long(&data);
 	}
 	return (0);
