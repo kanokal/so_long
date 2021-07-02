@@ -6,11 +6,27 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:25:13 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 16:42:23 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 14:30:48 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+
+void	sl_set_animation(t_sl_data *data)
+{
+	if (data->player_data.rev == 0)
+	{
+		data->player_data.animation++;
+		if (data->player_data.animation >= ANIMATION_SPEED * 2.5)
+			data->player_data.rev = 1;
+	}
+	else if (data->player_data.rev == 1)
+	{
+		data->player_data.animation--;
+		if (data->player_data.animation <= ANIMATION_SPEED * 0.5)
+			data->player_data.rev = 0;
+	}
+}
 
 char	**sl_char_more_alloc(char **arr, int arr_size)
 {
