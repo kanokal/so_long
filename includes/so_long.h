@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:05:59 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/01 16:45:48 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/02 14:34:54 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@
 
 void	sl_parse(const char *file_name, t_sl_data *data);
 void	so_long(t_sl_data *data);
+
 void	sl_render(t_sl_data *data);
+void	sl_set_background(t_sl_data *data);
+void	sl_player_move(t_sl_data *data);
+void	sl_display_move_count(t_sl_data *data);
 
 int		sl_press_key(const int key, t_sl_data *data);
 int		sl_press_key2(const int key, t_sl_data *data);
@@ -53,7 +57,10 @@ int		sl_is_ok_line(const char *line);
 void    sl_set_points(const char *line, t_sl_map *map, t_player_data *p);
 char	**sl_char_more_alloc(char **arr, int arr_size);
 int		sl_check_points(t_sl_map map);
+void	sl_set_animation(t_sl_data *data);
 
 void	sl_data_init(t_sl_data *data);
+
+void	sl_set_player(t_sl_data *data);
 
 #endif
