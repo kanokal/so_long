@@ -75,12 +75,12 @@ void    sl_set_points(const char *line, t_sl_data *data)
 	while (line[idx] != 0)
 	{
 		if (line[idx] == 'E')
-			data->map.exit_point++;
+			data->map.exit++;
 		else if (line[idx] == 'C')
-			data->map.collectible++;
-		else if (line[idx] == 'P' && data->map.starting_point == 0)
+			data->map.collect++;
+		else if (line[idx] == 'P' && data->map.player == 0)
 		{
-			data->map.starting_point++;
+			data->map.player++;
 			data->player.pos_y = data->map.height;
 			data->player.pos_x = idx;
 		}

@@ -41,9 +41,9 @@ static void	sl_map_init(t_sl_map *map)
 	map->grid = NULL;
 	map->height = 0;
 	map->width = 0;
-	map->collectible = 0;
-	map->exit_point = 0;
-	map->starting_point = 0;
+	map->collect = 0;
+	map->exit = 0;
+	map->player = 0;
 }
 
 static void	sl_img_init(t_img_data *img)

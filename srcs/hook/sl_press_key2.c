@@ -12,101 +12,93 @@
 
 #include "../../includes/so_long.h"
 
-static void	sl_player_move_north_2(t_sl_data *data)
+static void	sl_player_move_north_2(t_sl_data *data, int x, int y)
 {
-	if (data->map.grid[data->player.pos_y - 1][data->player.pos_x] == 'W' || data->map.grid[data->player.pos_y - 1][data->player.pos_x] == 'w' || data->map.grid[data->player.pos_y - 1][data->player.pos_x] == 'c')
-		exit(0);
-	if (data->map.grid[data->player.pos_y - 1][data->player.pos_x] == 'C')
-		data->map.collectible--;
-	data->map.grid[data->player.pos_y - 1][data->player.pos_x] = 'E';
-	data->map.grid[data->player.pos_y][data->player.pos_x] = 'P';
-	ft_swap_char(&data->map.grid[data->player.pos_y - 1][data->player.pos_x], &data->map.grid[data->player.pos_y][data->player.pos_x]);
-	data->player.pos_y--;
-	if (ft_bigint_add_val(data->player.mv_count, 1, 0) < 0)
-		ft_error_handling("Error\n");
 	data->player.view_dir = VIEW_NORTH;
-	sl_enemy_move(data);
+	if (data->map.grid[y - 1][x] != '1')
+		return ;
+	else if (data->map.grid[y - 1][x] == 'W' ||
+				data->map.grid[y - 1][x] == 'w' ||
+					data->map.grid[y - 1][x] == 'c')
+		exit(0);
+	else if (data->map.grid[y - 1][x] == 'C')
+		data->map.collect--;
+	data->map.grid[y - 1][x] = 'E';
+	data->map.grid[y][x] = 'P';
+	ft_swap_char(&data->map.grid[y - 1][x], &data->map.grid[y][x]);
+	data->player.pos_y--;
+	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);
 }
 
-static void	sl_player_move_south_2(t_sl_data *data)
+static void	sl_player_move_south_2(t_sl_data *data, int x, int y)
 {
-	if (data->map.grid[data->player.pos_y + 1][data->player.pos_x] == 'W' || data->map.grid[data->player.pos_y + 1][data->player.pos_x] == 'w' || data->map.grid[data->player.pos_y + 1][data->player.pos_x] == 'c')
-		exit(0);
-	else if (data->map.grid[data->player.pos_y + 1][data->player.pos_x] == 'C')
-		data->map.collectible--;
-	data->map.grid[data->player.pos_y + 1][data->player.pos_x] = 'E';
-	data->map.grid[data->player.pos_y][data->player.pos_x] = 'P';
-	ft_swap_char(&data->map.grid[data->player.pos_y + 1][data->player.pos_x], &data->map.grid[data->player.pos_y][data->player.pos_x]);
-	data->player.pos_y++;
-	if (ft_bigint_add_val(data->player.mv_count, 1, 0) < 0)
-		ft_error_handling("Error\n");
 	data->player.view_dir = VIEW_SOUTH;
-	sl_enemy_move(data);
+	if (data->map.grid[y + 1][x] != '1')
+		return ;
+	else if (data->map.grid[y + 1][x] == 'W' ||
+				data->map.grid[y + 1][x] == 'w' ||
+					data->map.grid[y + 1][x] == 'c')
+		exit(0);
+	else if (data->map.grid[y + 1][x] == 'C')
+		data->map.collect--;
+	data->map.grid[y + 1][x] = 'E';
+	data->map.grid[y][x] = 'P';
+	ft_swap_char(&data->map.grid[y + 1][x], &data->map.grid[y][x]);
+	data->player.pos_y++;
+	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);
 }
 
-static void	sl_player_move_west_2(t_sl_data *data)
+static void	sl_player_move_west_2(t_sl_data *data, int x, int y)
 {
-	if (data->map.grid[data->player.pos_y][data->player.pos_x - 1] == 'W' || data->map.grid[data->player.pos_y][data->player.pos_x - 1] == 'w' || data->map.grid[data->player.pos_y][data->player.pos_x - 1] == 'c')
-		exit(0);
-	else if (data->map.grid[data->player.pos_y][data->player.pos_x - 1] == 'C')
-		data->map.collectible--;
-	data->map.grid[data->player.pos_y][data->player.pos_x - 1] = 'E';
-	data->map.grid[data->player.pos_y][data->player.pos_x] = 'P';
-	ft_swap_char(&data->map.grid[data->player.pos_y][data->player.pos_x - 1], &data->map.grid[data->player.pos_y][data->player.pos_x]);
-	data->player.pos_x--;
-	if (ft_bigint_add_val(data->player.mv_count, 1, 0) < 0)
-		ft_error_handling("Error\n");
 	data->player.view_dir = VIEW_WEST;
-	sl_enemy_move(data);
-	sl_player_move(data);
-}
-
-static void	sl_player_move_east_2(t_sl_data *data)
-{
-	if (data->map.grid[data->player.pos_y][data->player.pos_x + 1] == 'W' || data->map.grid[data->player.pos_y][data->player.pos_x + 1] == 'w' || data->map.grid[data->player.pos_y][data->player.pos_x + 1] == 'c')
+	if (data->map.grid[y][x - 1] != '1')
+		return ;
+	else if (data->map.grid[y][x - 1] == 'W' ||
+				data->map.grid[y][x - 1] == 'w' ||
+					data->map.grid[y][x - 1] == 'c')
 		exit(0);
-	else if (data->map.grid[data->player.pos_y][data->player.pos_x + 1] == 'C')
-		data->map.collectible--;
-	data->map.grid[data->player.pos_y][data->player.pos_x + 1] = 'E';
-	data->map.grid[data->player.pos_y][data->player.pos_x] = 'P';
-	ft_swap_char(&data->map.grid[data->player.pos_y][data->player.pos_x + 1], &data->map.grid[data->player.pos_y][data->player.pos_x]);
-	data->player.pos_x++;
-	if (ft_bigint_add_val(data->player.mv_count, 1, 0) < 0)
-		ft_error_handling("Error\n");
-	data->player.view_dir = VIEW_EAST;
-	sl_enemy_move(data);
+	else if (data->map.grid[y][x - 1] == 'C')
+		data->map.collect--;
+	data->map.grid[y][x - 1] = 'E';
+	data->map.grid[y][x] = 'P';
+	ft_swap_char(&data->map.grid[y][x - 1], &data->map.grid[y][x]);
+	data->player.pos_x--;
+	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);
 }
 
-int			sl_press_key2(const int key, t_sl_data *data)
+static void	sl_player_move_east_2(t_sl_data *data, int x, int y)
+{
+	data->player.view_dir = VIEW_EAST;
+	if (data->map.grid[y][x + 1] == '1')
+		return ;
+	else if (data->map.grid[y][x + 1] == 'W' ||
+				data->map.grid[y][x + 1] == 'w' ||
+					data->map.grid[y][x + 1] == 'c')
+		exit(0);
+	else if (data->map.grid[y][x + 1] == 'C')
+		data->map.collect--;
+	data->map.grid[y][x + 1] = 'E';
+	data->map.grid[y][x] = 'P';
+	ft_swap_char(&data->map.grid[y][x + 1], &data->map.grid[y][x]);
+	data->player.pos_x++;
+	sl_enemy_move(data, 0, 0, data->map.grid);
+	sl_player_move(data);
+}
+
+int			sl_press_key2(const int key, t_sl_data *data, int x, int y)
 {
 	if (key == KEY_ESC)
 		exit(0);
 	else if (key == KEY_W)
-	{
-		data->player.view_dir = VIEW_NORTH;
-		if (data->map.grid[data->player.pos_y - 1][data->player.pos_x] != '1')
-			sl_player_move_north_2(data);
-	}
+		sl_player_move_north_2(data, x, y);
 	else if (key == KEY_S)
-	{
-		data->player.view_dir = VIEW_SOUTH;
-		if (data->map.grid[data->player.pos_y + 1][data->player.pos_x] != '1')
-			sl_player_move_south_2(data);
-	}
+		sl_player_move_south_2(data, x, y);
 	else if (key == KEY_A)
-	{
-		data->player.view_dir = VIEW_WEST;
-		if (data->map.grid[data->player.pos_y][data->player.pos_x - 1] != '1')
-			sl_player_move_west_2(data);
-	}
+		sl_player_move_west_2(data, x, y);
 	else if (key == KEY_D)
-	{
-		data->player.view_dir = VIEW_EAST;
-		if (data->map.grid[data->player.pos_y][data->player.pos_x + 1] != '1')
-			sl_player_move_east_2(data);
-	}
+		sl_player_move_east_2(data, x, y);
 	return (0);
 }

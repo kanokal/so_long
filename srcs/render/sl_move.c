@@ -14,6 +14,8 @@
 
 void		sl_player_move(t_sl_data *data)
 {
+	if (ft_bigint_add_val(data->player.mv_count, 1, 0) < 0)
+		ft_error_handling("Error\n");
 	sl_set_enemy_sprite(data);
 	sl_set_player_sprite(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->background.ptr, 0, 0);

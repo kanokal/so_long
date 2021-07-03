@@ -48,13 +48,13 @@ void	sl_player_move(t_sl_data *data);
 void	sl_display_move_count(t_sl_data *data);
 
 int		sl_press_key(const int key, t_sl_data *data);
-int		sl_press_key2(const int key, t_sl_data *data);
+int		sl_press_key2(const int key, t_sl_data *data, int x, int y);
 int		sl_release_key(const int key, t_sl_data *data);
 int		sl_close(t_sl_data *data);
 
-void	sl_enemy_move(t_sl_data *data);
-void	sl_enemy_move_w(t_sl_data *data);
-void	sl_enemy_move_c(t_sl_data *data);
+void	sl_enemy_move(t_sl_data *data, int x, int y, char **map);
+void	sl_enemy_move_w(t_sl_data *data, t_enemy_data *enemy);
+void	sl_enemy_move_c(t_sl_data *data, t_enemy_data *enemy);
 
 int	    sl_is_all_wall(const char *line);
 int		sl_is_ok_line(const char *line);

@@ -55,9 +55,9 @@ typedef struct		s_sl_map
 	char			**grid;
 	int				width;
 	int				height;
-	short			exit_point;
-	short			collectible;
-	short			starting_point;
+	short			exit;
+	short			collect;
+	short			player;
 }					t_sl_map;
 
 typedef struct		s_player_data
