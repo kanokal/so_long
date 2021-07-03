@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:44:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 19:00:24 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 21:08:53 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SPRITE_SIZE 64
 # define PIXEL_SIZE 48
-# define ANIMATION_SPEED 20
+# define ANIMATION_SPEED 3500
 
 # define VIEW_NORTH 0
 # define VIEW_SOUTH 1
@@ -45,7 +45,7 @@ typedef struct		s_texture
 }					t_texture;
 
 typedef struct		s_canvas
-	{
+{
 	int				width;
 	int				height;
 }					t_canvas;
@@ -65,8 +65,6 @@ typedef struct		s_player_data
 	int				pos_x;
 	int				pos_y;
 	char			view_dir;
-	int				animation;
-	char			rev;
 	t_bigint		*mv_count;
 }					t_player_data;
 
@@ -80,8 +78,6 @@ typedef struct		s_enemy_data
 
 typedef struct		s_enemy_group
 {
-	int				animation;
-	char			rev;
 	int				count;
 	t_enemy_data	*group;
 }					t_enemy_group;
@@ -100,6 +96,8 @@ typedef struct		s_sl_data
 	t_texture		texture;
 	t_player_data	player;
 	t_enemy_group	enemies;
+	int				animation;
+	char			rev;
 }					t_sl_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:46:54 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 17:46:30 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 20:19:25 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 static void	sl_player_move_north_2(t_sl_data *data, int x, int y)
 {
+	char	*front;
+
+	front = &data->map.grid[y - 1][x];
 	data->player.view_dir = VIEW_NORTH;
-	if (data->map.grid[y - 1][x] == '1')
+	if (*front == '1')
 		return ;
-	else if (data->map.grid[y - 1][x] == 'W' ||
-				data->map.grid[y - 1][x] == 'w' ||
-					data->map.grid[y - 1][x] == 'c')
+	else if (*front == 'W' || *front == 'w' || *front == 'c')
 		exit(0);
-	else if (data->map.grid[y - 1][x] == 'C')
+	else if (*front == 'C')
 		data->map.collect--;
-	data->map.grid[y - 1][x] = 'E';
+	*front = 'E';
 	data->map.grid[y][x] = 'P';
-	ft_swap_char(&data->map.grid[y - 1][x], &data->map.grid[y][x]);
+	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_y--;
 	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);
@@ -33,18 +34,19 @@ static void	sl_player_move_north_2(t_sl_data *data, int x, int y)
 
 static void	sl_player_move_south_2(t_sl_data *data, int x, int y)
 {
+	char	*front;
+
+	front = &data->map.grid[y + 1][x];
 	data->player.view_dir = VIEW_SOUTH;
-	if (data->map.grid[y + 1][x] == '1')
+	if (*front == '1')
 		return ;
-	else if (data->map.grid[y + 1][x] == 'W' ||
-				data->map.grid[y + 1][x] == 'w' ||
-					data->map.grid[y + 1][x] == 'c')
+	else if (*front == 'W' || *front == 'w' || *front == 'c')
 		exit(0);
-	else if (data->map.grid[y + 1][x] == 'C')
+	else if (*front == 'C')
 		data->map.collect--;
-	data->map.grid[y + 1][x] = 'E';
+	*front = 'E';
 	data->map.grid[y][x] = 'P';
-	ft_swap_char(&data->map.grid[y + 1][x], &data->map.grid[y][x]);
+	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_y++;
 	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);
@@ -52,18 +54,19 @@ static void	sl_player_move_south_2(t_sl_data *data, int x, int y)
 
 static void	sl_player_move_west_2(t_sl_data *data, int x, int y)
 {
+	char	*front;
+
+	front = &data->map.grid[y][x - 1];
 	data->player.view_dir = VIEW_WEST;
-	if (data->map.grid[y][x - 1] == '1')
+	if (*front == '1')
 		return ;
-	else if (data->map.grid[y][x - 1] == 'W' ||
-				data->map.grid[y][x - 1] == 'w' ||
-					data->map.grid[y][x - 1] == 'c')
+	else if (*front == 'W' || *front == 'w' || *front == 'c')
 		exit(0);
-	else if (data->map.grid[y][x - 1] == 'C')
+	else if (*front == 'C')
 		data->map.collect--;
-	data->map.grid[y][x - 1] = 'E';
+	*front = 'E';
 	data->map.grid[y][x] = 'P';
-	ft_swap_char(&data->map.grid[y][x - 1], &data->map.grid[y][x]);
+	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_x--;
 	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);
@@ -71,18 +74,19 @@ static void	sl_player_move_west_2(t_sl_data *data, int x, int y)
 
 static void	sl_player_move_east_2(t_sl_data *data, int x, int y)
 {
+	char	*front;
+
+	front = &data->map.grid[y][x + 1];
 	data->player.view_dir = VIEW_EAST;
-	if (data->map.grid[y][x + 1] == '1')
+	if (*front == '1')
 		return ;
-	else if (data->map.grid[y][x + 1] == 'W' ||
-				data->map.grid[y][x + 1] == 'w' ||
-					data->map.grid[y][x + 1] == 'c')
+	else if (*front == 'W' || *front == 'w' || *front == 'c')
 		exit(0);
-	else if (data->map.grid[y][x + 1] == 'C')
+	else if (*front == 'C')
 		data->map.collect--;
-	data->map.grid[y][x + 1] = 'E';
+	*front = 'E';
 	data->map.grid[y][x] = 'P';
-	ft_swap_char(&data->map.grid[y][x + 1], &data->map.grid[y][x]);
+	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_x++;
 	sl_enemy_move(data, 0, 0, data->map.grid);
 	sl_player_move(data);

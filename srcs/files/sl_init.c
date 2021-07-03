@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:47 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 19:00:21 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 20:58:17 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ static void	sl_player_data_init(t_player_data *player)
 	player->pos_y = 0;
 	player->mv_count = ft_bigint_create(1);
 	player->view_dir = VIEW_SOUTH;
-	player->animation = ANIMATION_SPEED * 0.5;
-	player->rev = 0;
 }
 
 void		sl_data_init(t_sl_data *data)
@@ -79,11 +77,11 @@ void		sl_data_init(t_sl_data *data)
 	sl_player_data_init(&data->player);
 	data->enemies.group = NULL;
 	data->enemies.count = 0;
-	data->enemies.rev = 0;
-	data->enemies.animation = ANIMATION_SPEED * 0.5;
 	sl_texture_init(data, data->texture.wall, "textures/wall.xpm");
 	sl_texture_init(data, data->texture.tile, "textures/tile.xpm");
 	sl_texture_init(data, data->texture.collect, "textures/collect.xpm");
 	sl_texture_init(data, data->texture.exit, "textures/exit.xpm");
 	sl_texture_init(data, data->texture.player, "textures/player.xpm");
+	data->rev = 0;
+	data->animation = ANIMATION_SPEED * 0.5;
 }

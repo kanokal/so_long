@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 17:49:45 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 18:53:59 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 20:22:56 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,101 +14,105 @@
 
 static void	sl_enemy_move_north(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y - 1][enemy->pos_x];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_EAST;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'P' ||
-				data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'C')
+	else if (*front == 'C')
 	{
-		data->map.grid[enemy->pos_y - 1][enemy->pos_x] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'c';
 	}
-	else if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'E')
+	else if (*front == 'E')
 	{
-		data->map.grid[enemy->pos_y - 1][enemy->pos_x] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	}
-	ft_swap_char(&data->map.grid[enemy->pos_y - 1][enemy->pos_x],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_y--;
 }
 
 static void	sl_enemy_move_south(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y + 1][enemy->pos_x];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_WEST;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'P' ||
-				data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'C')
+	else if (*front == 'C')
 	{
-		data->map.grid[enemy->pos_y + 1][enemy->pos_x] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'c';
 	}
-	else if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'E')
+	else if (*front == 'E')
 	{
-		data->map.grid[enemy->pos_y + 1][enemy->pos_x] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	}
-	ft_swap_char(&data->map.grid[enemy->pos_y + 1][enemy->pos_x],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_y++;
 }
 
 static void	sl_enemy_move_west(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y][enemy->pos_x - 1];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_NORTH;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'P' ||
-				data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'C')
+	else if (*front == 'C')
 	{
-		data->map.grid[enemy->pos_y][enemy->pos_x - 1] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'c';
 	}
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'E')
+	else if (*front == 'E')
 	{
-		data->map.grid[enemy->pos_y][enemy->pos_x - 1] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	}
-	ft_swap_char(&data->map.grid[enemy->pos_y][enemy->pos_x - 1],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_x--;
 }
 
 static void	sl_enemy_move_east(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y][enemy->pos_x + 1];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_SOUTH;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'P' ||
-				data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'C')
+	else if (*front == 'C')
 	{
-		data->map.grid[enemy->pos_y][enemy->pos_x + 1] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'c';
 	}
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'E')
+	else if (*front == 'E')
 	{
-		data->map.grid[enemy->pos_y][enemy->pos_x + 1] = '0';
+		*front = '0';
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	}
-	ft_swap_char(&data->map.grid[enemy->pos_y][enemy->pos_x + 1],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_x++;
 }
 

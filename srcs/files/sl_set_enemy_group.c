@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:07:02 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 18:31:52 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 19:33:54 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	sl_set_enemy_group(t_sl_data *data)
 	int	y;
 	int	idx;
 
+	// printf("%d\n", data->enemies.count);
 	data->enemies.group = (t_enemy_data *)malloc(sizeof(t_enemy_data) * data->enemies.count);
 	if (data->enemies.group == NULL)
 		ft_error_handling("Error\n");

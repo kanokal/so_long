@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:25:13 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:06:49 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 20:59:47 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,17 @@
 
 void	sl_set_animation(t_sl_data *data)
 {
-	if (data->player.rev == 0)
+	if (data->rev == 0)
 	{
-		data->player.animation++;
-		if (data->player.animation >= ANIMATION_SPEED * 2.5)
-			data->player.rev = 1;
+		data->animation++;
+		if (data->animation >= ANIMATION_SPEED * 2.5)
+			data->rev = 1;
 	}
-	else if (data->player.rev == 1)
+	else if (data->rev == 1)
 	{
-		data->player.animation--;
-		if (data->player.animation <= ANIMATION_SPEED * 0.5)
-			data->player.rev = 0;
-	}
-	if (data->enemies.rev == 0)
-	{
-		data->enemies.animation++;
-		if (data->enemies.animation >= ANIMATION_SPEED * 2.5)
-			data->enemies.rev = 1;
-	}
-	else if (data->enemies.rev == 1)
-	{
-		data->enemies.animation--;
-		if (data->enemies.animation <= ANIMATION_SPEED * 0.5)
-			data->enemies.rev = 0;
+		data->animation--;
+		if (data->animation <= ANIMATION_SPEED * 0.5)
+			data->rev = 0;
 	}
 }
 

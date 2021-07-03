@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:05:51 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:12:07 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 21:10:49 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 static int	sl_loop(t_sl_data *data)
 {
 	sl_set_animation(data);
-	sl_set_enemy_sprite(data);
-	sl_set_player_sprite(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->background.ptr, 0, 0);
-	sl_render(data);
-	sl_display_move_count(data);
+	if ((data->rev == 0 &&
+		(data->animation == ANIMATION_SPEED ||
+		data->animation == ANIMATION_SPEED * 2)) ||
+		(data->rev == 1 &&
+		(data->animation == ANIMATION_SPEED * 2 - 1 ||
+		data->animation == ANIMATION_SPEED - 1)))
+	{
+		sl_set_enemy_sprite(data);
+		sl_set_player_sprite(data);
+		sl_set_background(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->background.ptr, 0, 0);
+		sl_render(data);
+		sl_display_move_count(data);
+	}
 	return (0);
 }
 

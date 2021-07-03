@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 18:03:42 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 18:49:41 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 20:15:14 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,81 +14,85 @@
 
 static void	sl_enemy_move_north_c(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y - 1][enemy->pos_x];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_EAST;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'P' ||
-				data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'E')
+	else if (*front == 'E')
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	else
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'W';
-	data->map.grid[enemy->pos_y - 1][enemy->pos_x] = 'C';
-	ft_swap_char(&data->map.grid[enemy->pos_y - 1][enemy->pos_x],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	*front = 'C';
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_y--;
 }
 
 static void	sl_enemy_move_south_c(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y + 1][enemy->pos_x];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_WEST;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'P' ||
-				data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'E')
+	else if (*front == 'E')
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	else
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'W';
-	data->map.grid[enemy->pos_y + 1][enemy->pos_x] = 'C';
-	ft_swap_char(&data->map.grid[enemy->pos_y + 1][enemy->pos_x],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	*front = 'C';
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_y++;
 }
 
 static void	sl_enemy_move_west_c(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y][enemy->pos_x - 1];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_NORTH;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'P' ||
-				data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'E')
+	else if (*front == 'E')
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	else
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'W';
-	data->map.grid[enemy->pos_y][enemy->pos_x - 1] = 'C';
-	ft_swap_char(&data->map.grid[enemy->pos_y][enemy->pos_x - 1],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	*front = 'C';
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_x--;
 }
 
 static void	sl_enemy_move_east_c(t_sl_data *data, t_enemy_data *enemy)
 {
-	if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == '1')
+	char	*front;
+
+	front = &data->map.grid[enemy->pos_y][enemy->pos_x + 1];
+	if (*front == '1' || *front == 'W' || *front == 'w' || *front == 'c')
 	{
 		enemy->view_dir = VIEW_SOUTH;
 		return ;
 	}
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'P' ||
-				data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'p')
+	else if (*front == 'P' || *front == 'p')
 		exit(0);
-	else if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'E')
+	else if (*front == 'E')
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'w';
 	else
 		data->map.grid[enemy->pos_y][enemy->pos_x] = 'W';
-	data->map.grid[enemy->pos_y][enemy->pos_x + 1] = 'C';
-	ft_swap_char(&data->map.grid[enemy->pos_y][enemy->pos_x + 1],
-					&data->map.grid[enemy->pos_y][enemy->pos_x]);
+	*front = 'C';
+	ft_swap_char(front, &data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_x++;
 }
 

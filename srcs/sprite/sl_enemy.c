@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 17:08:30 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 19:14:12 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 20:58:50 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@ static void	sl_set_enemy_north(t_sl_data *data, int *texture)
 	t_img_data	img;
 	int			x;
 	int			y;
+	int			sprite_x;
+	int			sprite_y;
 
-	//printf("north = %d / VIEW = %d\n", idx, data->enemies.group[idx].view_dir);
 	img = data->sprite_enemy;
 	y = 0;
 	while (y < PIXEL_SIZE)
 	{
 		x = 0;
+		sprite_y = (int)(y * data->ratio) * img.size_line / 4;
 		while (x < PIXEL_SIZE)
 		{
-			texture[y * PIXEL_SIZE + x] = img.addr[data->enemies.animation / ANIMATION_SPEED * SPRITE_SIZE + (int)(y * data->ratio) * img.size_line / 4 + (int)(x * data->ratio)];
+			sprite_x = data->animation / ANIMATION_SPEED
+						* SPRITE_SIZE + (int)(x * data->ratio);
+			texture[y * PIXEL_SIZE + x] = img.addr[sprite_y + sprite_x];
 			x++;
 		}
 		y++;
@@ -38,16 +42,21 @@ static void	sl_set_enemy_south(t_sl_data *data, int *texture)
 	t_img_data	img;
 	int			x;
 	int			y;
+	int			sprite_x;
+	int			sprite_y;
 
-	//printf("south = %d / VIEW = %d\n", idx, data->enemies.group[idx].view_dir);
 	img = data->sprite_enemy;
 	y = 0;
 	while (y < PIXEL_SIZE)
 	{
 		x = 0;
+		sprite_y = img.size_line / 4 * SPRITE_SIZE * 2 +
+					(int)(y * data->ratio) * img.size_line / 4;
 		while (x < PIXEL_SIZE)
 		{
-			texture[y * PIXEL_SIZE + x] = img.addr[img.size_line / 4 * SPRITE_SIZE * 2 + data->enemies.animation / ANIMATION_SPEED * SPRITE_SIZE + (int)(y * data->ratio) * img.size_line / 4 + (int)(x * data->ratio)];
+			sprite_x = data->animation / ANIMATION_SPEED
+						* SPRITE_SIZE + (int)(x * data->ratio);
+			texture[y * PIXEL_SIZE + x] = img.addr[sprite_y + sprite_x];
 			x++;
 		}
 		y++;
@@ -59,16 +68,21 @@ static void	sl_set_enemy_west(t_sl_data *data, int *texture)
 	t_img_data	img;
 	int			x;
 	int			y;
+	int			sprite_x;
+	int			sprite_y;
 
-	//printf("west = %d / VIEW = %d\n", idx, data->enemies.group[idx].view_dir);
 	img = data->sprite_enemy;
 	y = 0;
 	while (y < PIXEL_SIZE)
 	{
 		x = 0;
+		sprite_y = img.size_line / 4 * SPRITE_SIZE * 3 +
+					(int)(y * data->ratio) * img.size_line / 4;
 		while (x < PIXEL_SIZE)
 		{
-			texture[y * PIXEL_SIZE + x] = img.addr[img.size_line / 4 * SPRITE_SIZE * 3 + data->enemies.animation / ANIMATION_SPEED * SPRITE_SIZE + (int)(y * data->ratio) * img.size_line / 4 + (int)(x * data->ratio)];
+			sprite_x = data->animation / ANIMATION_SPEED
+						* SPRITE_SIZE + (int)(x * data->ratio);
+			texture[y * PIXEL_SIZE + x] = img.addr[sprite_y + sprite_x];
 			x++;
 		}
 		y++;
@@ -80,16 +94,21 @@ static void	sl_set_enemy_east(t_sl_data *data, int *texture)
 	t_img_data	img;
 	int			x;
 	int			y;
+	int			sprite_x;
+	int			sprite_y;
 
-	//printf("east = %d / VIEW = %d\n", idx, data->enemies.group[idx].view_dir);
 	img = data->sprite_enemy;
 	y = 0;
 	while (y < PIXEL_SIZE)
 	{
 		x = 0;
+		sprite_y = img.size_line / 4 * SPRITE_SIZE +
+					(int)(y * data->ratio) * img.size_line / 4;
 		while (x < PIXEL_SIZE)
 		{
-			texture[y * PIXEL_SIZE + x] = img.addr[img.size_line / 4 * SPRITE_SIZE + data->enemies.animation / ANIMATION_SPEED * SPRITE_SIZE + (int)(y * data->ratio) * img.size_line / 4 + (int)(x * data->ratio)];
+			sprite_x = data->animation / ANIMATION_SPEED
+						* SPRITE_SIZE + (int)(x * data->ratio);
+			texture[y * PIXEL_SIZE + x] = img.addr[sprite_y + sprite_x];
 			x++;
 		}
 		y++;
