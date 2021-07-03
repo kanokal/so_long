@@ -6,7 +6,7 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/07/02 19:11:43 by jpyo             ###   ########.fr        #
+#    Updated: 2021/07/03 18:29:43 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OPENGL_LIB		=	libmlx.a
 all : $(NAME)
 
 run : $(NAME)
-	./so_long map/sample_bonus1.ber
+	./so_long map/bonus_2.ber
 
 $(NAME) : $(FT_LIB) $(MMS_LIB) $(OPENGL_LIB) $(SRCS_OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(MMS_LIB) $(OPENGL_LIB) $(FT_LIB) $(SRCS_OBJS)

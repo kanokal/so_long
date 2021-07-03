@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:46:54 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:15:03 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 17:46:30 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	sl_player_move_north_2(t_sl_data *data, int x, int y)
 {
 	data->player.view_dir = VIEW_NORTH;
-	if (data->map.grid[y - 1][x] != '1')
+	if (data->map.grid[y - 1][x] == '1')
 		return ;
 	else if (data->map.grid[y - 1][x] == 'W' ||
 				data->map.grid[y - 1][x] == 'w' ||
@@ -34,7 +34,7 @@ static void	sl_player_move_north_2(t_sl_data *data, int x, int y)
 static void	sl_player_move_south_2(t_sl_data *data, int x, int y)
 {
 	data->player.view_dir = VIEW_SOUTH;
-	if (data->map.grid[y + 1][x] != '1')
+	if (data->map.grid[y + 1][x] == '1')
 		return ;
 	else if (data->map.grid[y + 1][x] == 'W' ||
 				data->map.grid[y + 1][x] == 'w' ||
@@ -53,7 +53,7 @@ static void	sl_player_move_south_2(t_sl_data *data, int x, int y)
 static void	sl_player_move_west_2(t_sl_data *data, int x, int y)
 {
 	data->player.view_dir = VIEW_WEST;
-	if (data->map.grid[y][x - 1] != '1')
+	if (data->map.grid[y][x - 1] == '1')
 		return ;
 	else if (data->map.grid[y][x - 1] == 'W' ||
 				data->map.grid[y][x - 1] == 'w' ||

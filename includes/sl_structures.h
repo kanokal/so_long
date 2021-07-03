@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:44:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:04:41 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 19:00:24 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ typedef struct		s_player_data
 
 typedef struct		s_enemy_data
 {
+	int				number;
 	int				pos_x;
 	int				pos_y;
 	char			view_dir;
-	char			mv_dir;
 }					t_enemy_data;
 
 typedef struct		s_enemy_group
@@ -94,7 +94,8 @@ typedef struct		s_sl_data
 	t_canvas		canvas;
 	t_img_data		img;
 	t_img_data		background;
-	t_img_data		move;
+	t_img_data		sprite_player;
+	t_img_data		sprite_enemy;
 	t_sl_map		map;
 	t_texture		texture;
 	t_player_data	player;

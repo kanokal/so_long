@@ -6,22 +6,18 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 17:49:45 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:16:49 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 18:53:59 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-static void	sl_enemy_move_south(t_sl_data *data, t_enemy_data *enemy);
-static void	sl_enemy_move_west(t_sl_data *data, t_enemy_data *enemy);
-static void	sl_enemy_move_east(t_sl_data *data, t_enemy_data *enemy);
-
 static void	sl_enemy_move_north(t_sl_data *data, t_enemy_data *enemy)
 {
 	if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == '1')
 	{
-		enemy->mv_dir = VIEW_EAST;
-		return (sl_enemy_move_east(data, enemy));
+		enemy->view_dir = VIEW_EAST;
+		return ;
 	}
 	else if (data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'P' ||
 				data->map.grid[enemy->pos_y - 1][enemy->pos_x] == 'p')
@@ -39,15 +35,14 @@ static void	sl_enemy_move_north(t_sl_data *data, t_enemy_data *enemy)
 	ft_swap_char(&data->map.grid[enemy->pos_y - 1][enemy->pos_x],
 					&data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_y--;
-	enemy->view_dir = VIEW_NORTH;
 }
 
 static void	sl_enemy_move_south(t_sl_data *data, t_enemy_data *enemy)
 {
 	if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == '1')
 	{
-		enemy->mv_dir = VIEW_WEST;
-		return (sl_enemy_move_west(data, enemy));
+		enemy->view_dir = VIEW_WEST;
+		return ;
 	}
 	else if (data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'P' ||
 				data->map.grid[enemy->pos_y + 1][enemy->pos_x] == 'p')
@@ -65,15 +60,14 @@ static void	sl_enemy_move_south(t_sl_data *data, t_enemy_data *enemy)
 	ft_swap_char(&data->map.grid[enemy->pos_y + 1][enemy->pos_x],
 					&data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_y++;
-	enemy->view_dir = VIEW_SOUTH;
 }
 
 static void	sl_enemy_move_west(t_sl_data *data, t_enemy_data *enemy)
 {
 	if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == '1')
 	{
-		enemy->mv_dir = VIEW_NORTH;
-		return (sl_enemy_move_north(data, enemy));
+		enemy->view_dir = VIEW_NORTH;
+		return ;
 	}
 	else if (data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'P' ||
 				data->map.grid[enemy->pos_y][enemy->pos_x - 1] == 'p')
@@ -91,15 +85,14 @@ static void	sl_enemy_move_west(t_sl_data *data, t_enemy_data *enemy)
 	ft_swap_char(&data->map.grid[enemy->pos_y][enemy->pos_x - 1],
 					&data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_x--;
-	enemy->view_dir = VIEW_WEST;
 }
 
 static void	sl_enemy_move_east(t_sl_data *data, t_enemy_data *enemy)
 {
 	if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == '1')
 	{
-		enemy->mv_dir = VIEW_SOUTH;
-		return (sl_enemy_move_south(data, enemy));
+		enemy->view_dir = VIEW_SOUTH;
+		return ;
 	}
 	else if (data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'P' ||
 				data->map.grid[enemy->pos_y][enemy->pos_x + 1] == 'p')
@@ -117,13 +110,11 @@ static void	sl_enemy_move_east(t_sl_data *data, t_enemy_data *enemy)
 	ft_swap_char(&data->map.grid[enemy->pos_y][enemy->pos_x + 1],
 					&data->map.grid[enemy->pos_y][enemy->pos_x]);
 	enemy->pos_x++;
-	enemy->view_dir = VIEW_EAST;
 }
 
 void	sl_enemy_move(t_sl_data *data, int x, int y, char **map)
 {
 	int		idx;
-	char	**map;
 
 	idx = 0;
 	while (idx < data->enemies.count)
@@ -137,13 +128,13 @@ void	sl_enemy_move(t_sl_data *data, int x, int y, char **map)
 			sl_enemy_move_w(data, &data->enemies.group[idx]);
 		else if (map[y][x] == 'c')
 			sl_enemy_move_c(data, &data->enemies.group[idx]);
-		else if (data->enemies.group[idx].mv_dir == VIEW_NORTH)
+		else if (data->enemies.group[idx].view_dir == VIEW_NORTH)
 			sl_enemy_move_north(data, &data->enemies.group[idx]);
-		else if (data->enemies.group[idx].mv_dir == VIEW_SOUTH)
+		else if (data->enemies.group[idx].view_dir == VIEW_SOUTH)
 			sl_enemy_move_south(data, &data->enemies.group[idx]);
-		else if (data->enemies.group[idx].mv_dir == VIEW_WEST)
+		else if (data->enemies.group[idx].view_dir == VIEW_WEST)
 			sl_enemy_move_west(data, &data->enemies.group[idx]);
-		else if (data->enemies.group[idx].mv_dir == VIEW_EAST)
+		else if (data->enemies.group[idx].view_dir == VIEW_EAST)
 			sl_enemy_move_east(data, &data->enemies.group[idx]);
 		idx++;
 	}

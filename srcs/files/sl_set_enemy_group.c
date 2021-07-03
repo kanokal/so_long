@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:07:02 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:08:38 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 18:31:52 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	sl_set_enemy_group(t_sl_data *data)
 		{
 			if (data->map.grid[y][x] == 'W')
 			{
+				data->enemies.group[idx].number = idx;
 				data->enemies.group[idx].pos_x = x;
 				data->enemies.group[idx].pos_y = y;
 				data->enemies.group[idx].view_dir = idx % 4;
-				data->enemies.group[idx].mv_dir = idx % 4;
 				idx++;
 			}
 			x++;

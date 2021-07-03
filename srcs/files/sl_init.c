@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:47 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 19:09:41 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/03 19:00:21 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void		sl_data_init(t_sl_data *data)
 	data->win = NULL;
 	sl_img_init(&data->img);
 	sl_img_init(&data->background);
-	sl_img_init(&data->move);
+	sl_img_init(&data->sprite_player);
+	sl_img_init(&data->sprite_enemy);
 	sl_map_init(&data->map);
 	sl_player_data_init(&data->player);
 	data->enemies.group = NULL;
