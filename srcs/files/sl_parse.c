@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:15:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 17:45:50 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 18:21:23 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static void	sl_check_line(const int idx, char *line, t_sl_map *map)
 	if (idx == 0)
 	{
 		if (sl_is_all_wall(line) != 1)
-			ft_error_handling("Error\nInvalid map. must surrounded wall\n");
+			ft_error_handling("Error\nInvalid map. Must surrounded wall\n");
 		map->width = (int)ft_strlen(line);
 	}
 	else
 	{
 		if (sl_is_ok_line(line) != 1)
-			ft_error_handling("Error\nInvalid map. must surrounded wall\n");
+			ft_error_handling("Error\nInvalid map. Must surrounded wall\n");
 		if ((int)ft_strlen(line) != map->width)
-			ft_error_handling("Error\nInvalid map. must be rectangular\n");
+			ft_error_handling("Error\nInvalid map. Must be rectangular\n");
 	}
 }
 
