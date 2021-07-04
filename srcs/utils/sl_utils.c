@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:25:13 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 20:59:47 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 16:41:17 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**sl_char_more_alloc(char **arr, int arr_size)
 	return (tmp);
 }
 
-void    sl_set_points(const char *line, t_sl_data *data)
+void	sl_set_points(const char *line, t_sl_data *data)
 {
 	int	idx;
 

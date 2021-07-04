@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:01 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 21:16:42 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 16:13:48 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	sl_set_background_do(t_sl_data *data, int x, int y, int *texture)
 		while (i < PIXEL_SIZE)
 		{
 			bg_x = x * PIXEL_SIZE + i;
-			if (texture[j * PIXEL_SIZE + i] != 0xff000000)
+			if ((unsigned int)texture[j * PIXEL_SIZE + i] != 0xff000000)
 				data->background.addr[bg_y + bg_x] =
 					texture[j * PIXEL_SIZE + i];
 			else

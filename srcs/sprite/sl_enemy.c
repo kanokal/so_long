@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 17:08:30 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 20:58:50 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 15:14:30 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,13 @@ void		sl_set_enemy_sprite(t_sl_data *data)
 	idx = 0;
 	while (idx < data->enemies.count)
 	{
-		if (data->enemies.group[idx].view_dir == VIEW_NORTH)
+		if (data->enemies.group[idx].view_dir == NORTH)
 			sl_set_enemy_north(data, data->texture.enemy[idx]);
-		else if (data->enemies.group[idx].view_dir == VIEW_SOUTH)
+		else if (data->enemies.group[idx].view_dir == SOUTH)
 			sl_set_enemy_south(data, data->texture.enemy[idx]);
-		else if (data->enemies.group[idx].view_dir == VIEW_EAST)
+		else if (data->enemies.group[idx].view_dir == EAST)
 			sl_set_enemy_east(data, data->texture.enemy[idx]);
-		else if (data->enemies.group[idx].view_dir == VIEW_WEST)
+		else if (data->enemies.group[idx].view_dir == WEST)
 			sl_set_enemy_west(data, data->texture.enemy[idx]);
 		idx++;
 	}

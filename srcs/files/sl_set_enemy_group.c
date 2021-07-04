@@ -6,33 +6,18 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:07:02 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 19:33:54 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 16:10:16 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	sl_set_enemy_group(t_sl_data *data)
+static void	sl_set_enemy_group_do(t_sl_data *data)
 {
 	int	x;
 	int	y;
 	int	idx;
 
-	// printf("%d\n", data->enemies.count);
-	data->enemies.group = (t_enemy_data *)malloc(sizeof(t_enemy_data) * data->enemies.count);
-	if (data->enemies.group == NULL)
-		ft_error_handling("Error\n");
-	data->texture.enemy = (int **)malloc(sizeof(int *) * data->enemies.count);
-	if (data->texture.enemy == NULL)
-		ft_error_handling("Error\n");
-	idx = 0;
-	while (idx < data->enemies.count)
-	{
-		data->texture.enemy[idx] = (int *)malloc(sizeof(int) * (PIXEL_SIZE * PIXEL_SIZE));
-		if (data->texture.enemy[idx] == NULL)
-			ft_error_handling("Error\n");
-		idx++;
-	}
 	idx = 0;
 	y = 0;
 	while (y < data->map.height && idx < data->enemies.count)
@@ -52,4 +37,27 @@ void	sl_set_enemy_group(t_sl_data *data)
 		}
 		y++;
 	}
+}
+
+void		sl_set_enemy_group(t_sl_data *data)
+{
+	int	idx;
+
+	data->enemies.group =
+		(t_enemy_data *)malloc(sizeof(t_enemy_data) * data->enemies.count);
+	if (data->enemies.group == NULL)
+		ft_error_handling("Error\n");
+	data->texture.enemy = (int **)malloc(sizeof(int *) * data->enemies.count);
+	if (data->texture.enemy == NULL)
+		ft_error_handling("Error\n");
+	idx = 0;
+	while (idx < data->enemies.count)
+	{
+		data->texture.enemy[idx] =
+			(int *)malloc(sizeof(int) * (PIXEL_SIZE * PIXEL_SIZE));
+		if (data->texture.enemy[idx] == NULL)
+			ft_error_handling("Error\n");
+		idx++;
+	}
+	sl_set_enemy_group_do(data);
 }

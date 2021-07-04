@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:11:50 by marvin            #+#    #+#             */
-/*   Updated: 2021/06/25 17:20:03 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 14:59:07 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void		ft_quick_sort(int *arr, int arr_size);
 void		ft_bzero_int(int *arr, size_t n);
 void		ft_error_handling(char *msg);
 void		ft_perror_handling(char *msg);
+int			ft_rand_xor(int seed1, int seed2);
 
 void		*ft_bigint_delete(t_bigint **src);
 t_bigint	*ft_bigint_create(unsigned int idx);

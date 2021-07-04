@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 13:59:16 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 20:59:13 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 15:14:42 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ static void	sl_player_east(t_sl_data *data, int *texture)
 
 void		sl_set_player_sprite(t_sl_data *data)
 {
-	if (data->player.view_dir == VIEW_NORTH)
+	if (data->player.view_dir == NORTH)
 		sl_player_north(data, data->texture.player);
-	else if (data->player.view_dir == VIEW_SOUTH)
+	else if (data->player.view_dir == SOUTH)
 		sl_player_south(data, data->texture.player);
-	else if (data->player.view_dir == VIEW_EAST)
+	else if (data->player.view_dir == EAST)
 		sl_player_east(data, data->texture.player);
-	else if (data->player.view_dir == VIEW_WEST)
+	else if (data->player.view_dir == WEST)
 		sl_player_west(data, data->texture.player);
 }

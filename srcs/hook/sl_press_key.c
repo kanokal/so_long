@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:26 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 20:17:45 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 16:14:39 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	sl_player_move_north(t_sl_data *data, int x, int y)
 	char	*front;
 
 	front = &data->map.grid[y - 1][x];
-	data->player.view_dir = VIEW_NORTH;
+	data->player.view_dir = NORTH;
 	if (*front == '1')
 		return ;
 	else if (*front == 'W' || *front == 'w' || *front == 'c')
@@ -36,7 +36,7 @@ static void	sl_player_move_north(t_sl_data *data, int x, int y)
 	}
 	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_y--;
-	sl_enemy_move(data, 0, 0, data->map.grid);
+	sl_enemy_move(data, 0, 0);
 	sl_player_move(data);
 }
 
@@ -45,7 +45,7 @@ static void	sl_player_move_south(t_sl_data *data, int x, int y)
 	char	*front;
 
 	front = &data->map.grid[y + 1][x];
-	data->player.view_dir = VIEW_SOUTH;
+	data->player.view_dir = SOUTH;
 	if (*front == '1')
 		return ;
 	else if (*front == 'W' || *front == 'w' || *front == 'c')
@@ -64,7 +64,7 @@ static void	sl_player_move_south(t_sl_data *data, int x, int y)
 	}
 	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_y++;
-	sl_enemy_move(data, 0, 0, data->map.grid);
+	sl_enemy_move(data, 0, 0);
 	sl_player_move(data);
 }
 
@@ -73,7 +73,7 @@ static void	sl_player_move_west(t_sl_data *data, int x, int y)
 	char	*front;
 
 	front = &data->map.grid[y][x - 1];
-	data->player.view_dir = VIEW_WEST;
+	data->player.view_dir = WEST;
 	if (*front == '1')
 		return ;
 	else if (*front == 'W' || *front == 'w' || *front == 'c')
@@ -92,7 +92,7 @@ static void	sl_player_move_west(t_sl_data *data, int x, int y)
 	}
 	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_x--;
-	sl_enemy_move(data, 0, 0, data->map.grid);
+	sl_enemy_move(data, 0, 0);
 	sl_player_move(data);
 }
 
@@ -101,7 +101,7 @@ static void	sl_player_move_east(t_sl_data *data, int x, int y)
 	char	*front;
 
 	front = &data->map.grid[y][x + 1];
-	data->player.view_dir = VIEW_EAST;
+	data->player.view_dir = EAST;
 	if (*front == '1')
 		return ;
 	else if (*front == 'W' || *front == 'w' || *front == 'c')
@@ -120,7 +120,7 @@ static void	sl_player_move_east(t_sl_data *data, int x, int y)
 	}
 	ft_swap_char(front, &data->map.grid[y][x]);
 	data->player.pos_x++;
-	sl_enemy_move(data, 0, 0, data->map.grid);
+	sl_enemy_move(data, 0, 0);
 	sl_player_move(data);
 }
 

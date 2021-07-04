@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:15:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/02 17:23:32 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 16:17:08 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,6 @@ void		sl_parse(const char *file_name, t_sl_data *data)
 		ft_perror_handling("open");
 	sl_set_map(fd, data);
 	close(fd);
+	data->canvas.width = data->map.width * PIXEL_SIZE;
+	data->canvas.height = data->map.height * PIXEL_SIZE;
 }

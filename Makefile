@@ -6,21 +6,21 @@
 #    By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/11 14:51:11 by jpyo              #+#    #+#              #
-#    Updated: 2021/07/03 20:32:11 by jpyo             ###   ########.fr        #
+#    Updated: 2021/07/04 16:23:28 by jpyo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	so_long
 CC				=	gcc
-CFLAGS			=	#-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror
 
 HEADER_DIR		=	./includes/
 
 FILES			=	main \
 					files/sl_parse files/sl_init files/sl_set_enemy_group \
 					utils/sl_utils \
-					hook/sl_hook hook/sl_press_key hook/sl_release_key hook/sl_press_key2 \
-					hook/sl_enemy_move hook/sl_enemy_move_c hook/sl_enemy_move_w \
+					hook/sl_hook hook/sl_press_key hook/sl_press_key2 \
+					hook/sl_enemy_move hook/sl_enemy_move_c hook/sl_enemy_move_w hook/sl_enemy_utils \
 					render/so_long render/sl_render render/sl_background render/sl_move render/sl_move_count \
 					sprite/sl_player sprite/sl_enemy
 SRCS_DIR		=	./srcs/
@@ -42,7 +42,7 @@ run : $(NAME)
 	./so_long map/bonus_1.ber
 
 $(NAME) : $(FT_LIB) $(MMS_LIB) $(OPENGL_LIB) $(SRCS_OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(MMS_LIB) $(OPENGL_LIB) $(FT_LIB) $(SRCS_OBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(MMS_LIB) -L. -lmlx -framework OpenGL -framework Appkit $(FT_LIB) $(SRCS_OBJS)
 
 $(FT_LIB) :
 	$(MAKE) -C $(FT_LIB_DIR)

@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:44:09 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/03 21:08:53 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 16:42:30 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # define SPRITE_SIZE 64
 # define PIXEL_SIZE 48
 # define ANIMATION_SPEED 3500
-
-# define VIEW_NORTH 0
-# define VIEW_SOUTH 1
-# define VIEW_WEST 2
-# define VIEW_EAST 3
 
 typedef struct		s_img_data
 {
@@ -79,6 +74,7 @@ typedef struct		s_enemy_data
 typedef struct		s_enemy_group
 {
 	int				count;
+	char			turn;
 	t_enemy_data	*group;
 }					t_enemy_group;
 
