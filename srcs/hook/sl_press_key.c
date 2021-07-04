@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:26 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 16:14:39 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 17:17:22 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ int			sl_press_key(const int key, t_sl_data *data)
 
 	x = data->player.pos_x;
 	y = data->player.pos_y;
-	printf("Key in digit : %d\n", key);
 	if (data->map.grid[y][x] == 'p')
 		return (sl_press_key2(key, data, x, y));
 	if (key == KEY_ESC)
