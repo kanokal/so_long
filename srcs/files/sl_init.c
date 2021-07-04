@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 16:05:47 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 16:26:59 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 18:13:38 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	sl_texture_init(t_sl_data *data, int *texture, char *file_name)
 	img.ptr = mlx_xpm_file_to_image(data->mlx, file_name,
 		&img.width, &img.height);
 	if (img.ptr == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed xpm to image on init\n");
 	img.addr = (int *)mlx_get_data_addr(img.ptr, &img.bpp,
 		&img.size_line, &img.endian);
 	y = 0;
@@ -71,7 +71,7 @@ void		sl_data_init(t_sl_data *data)
 {
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed mlx init\n");
 	data->ratio = (double)SPRITE_SIZE / PIXEL_SIZE;
 	data->win = NULL;
 	sl_img_init(&data->img);

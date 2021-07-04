@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:05:51 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 16:40:43 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 18:13:50 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	sl_set_sprite_img(t_sl_data *data)
 		"textures/enemy.xpm", &data->sprite_enemy.width,
 			&data->sprite_enemy.height);
 	if (data->sprite_enemy.ptr == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed xpm to image on enemy\n");
 	data->sprite_enemy.addr =
 		(int *)mlx_get_data_addr(data->sprite_enemy.ptr,
 			&data->sprite_enemy.bpp, &data->sprite_enemy.size_line,
@@ -27,7 +27,7 @@ static void	sl_set_sprite_img(t_sl_data *data)
 		"textures/player.xpm", &data->sprite_player.width,
 			&data->sprite_player.height);
 	if (data->sprite_player.ptr == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed xpm to image on player\n");
 	data->sprite_player.addr =
 		(int *)mlx_get_data_addr(data->sprite_player.ptr,
 			&data->sprite_player.bpp, &data->sprite_player.size_line,
@@ -60,7 +60,7 @@ void		so_long(t_sl_data *data)
 	data->background.ptr = mlx_new_image(data->mlx,
 		data->canvas.width, data->canvas.height);
 	if (data->background.ptr == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed get background ptr\n");
 	data->background.addr =
 		(int *)mlx_get_data_addr(data->background.ptr, &data->background.bpp,
 			&data->background.size_line, &data->background.endian);

@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:07:02 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 16:10:16 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 17:46:10 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ void		sl_set_enemy_group(t_sl_data *data)
 	data->enemies.group =
 		(t_enemy_data *)malloc(sizeof(t_enemy_data) * data->enemies.count);
 	if (data->enemies.group == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed malloc on enemy\n");
 	data->texture.enemy = (int **)malloc(sizeof(int *) * data->enemies.count);
 	if (data->texture.enemy == NULL)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed malloc on enemy\n");
 	idx = 0;
 	while (idx < data->enemies.count)
 	{
 		data->texture.enemy[idx] =
 			(int *)malloc(sizeof(int) * (PIXEL_SIZE * PIXEL_SIZE));
 		if (data->texture.enemy[idx] == NULL)
-			ft_error_handling("Error\n");
+			ft_error_handling("Error\nFailed malloc on enemy\n");
 		idx++;
 	}
 	sl_set_enemy_group_do(data);

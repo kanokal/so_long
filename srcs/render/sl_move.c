@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:28:58 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 15:09:14 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 17:48:00 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		sl_player_move(t_sl_data *data)
 {
 	if (ft_bigint_add_val(data->player.mv_count, 1, 0) < 0)
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nFailed malloc on bigint\n");
 	sl_set_enemy_sprite(data);
 	sl_set_player_sprite(data);
 	sl_set_background(data);

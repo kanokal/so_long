@@ -6,7 +6,7 @@
 /*   By: jpyo <jpyo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 17:28:28 by jpyo              #+#    #+#             */
-/*   Updated: 2021/07/04 16:13:34 by jpyo             ###   ########.fr       */
+/*   Updated: 2021/07/04 18:12:32 by jpyo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	sl_render_select(t_sl_data *data, int x, int y)
 		sl_render_do(data, x, y,
 			data->texture.enemy[sl_search_enemy(data, x, y)]);
 	else
-		ft_error_handling("Error\n");
+		ft_error_handling("Error\nInvalid map\n");
 }
 
 void		sl_render(t_sl_data *data)
